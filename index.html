@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <title>Tranform Generator</title>
+</head>
+<body>
+  <main class="container">
+    <h1>Tranform Generator</h1>
+    <div id="input-area">
+      <p>Edite o elemento Div com os controles abaixo:</p>
+      <div id="controls-area">
+        <div class="control-item">
+          <p>Translate X</p>
+          <input type="range" value="0" name="translate-x" id="range-translate-x">
+          <p class="control-num">0px</p>
+        </div>
+        <div class="control-item">
+          <p>Translate Y</p>
+          <input type="range" value="0" name="translate-y" id="range-translate-y">
+          <p class="control-num">0px</p>
+        </div>
+        <div class="control-item">
+          <p>Rotate X</p>
+          <input type="range" value="0" name="rotate-x" id="range-rotate-x">
+          <p class="control-num">0°</p>
+        </div>
+        <div class="control-item">
+          <p>Rotate Y</p>
+          <input type="range" value="0" name="rotate-y" id="range-rotate-y">
+          <p class="control-num">0°</p>
+        </div>
+        <div class="control-item">
+          <p>Scale</p>
+          <input type="range" value="0" name="scale" id="range-scale">
+          <p class="control-num">1</p>
+        </div>
+        <div class="control-item">
+          <p>Scale X</p>
+          <input type="range" value="0" name="scale-x" id="range-scale-x">
+          <p class="control-num">0</p>
+        </div>
+        <div class="control-item">
+          <p>Scale Y</p>
+          <input type="range" value="0" name="scale-y" id="range-scale-y">
+          <p class="control-num">0</p>
+        </div>
+        <div class="control-item">
+          <p>Skew X</p>
+          <input type="range" value="0" name="skew-x" id="range-skew-x">
+          <p class="control-num">0</p>
+        </div>
+        <div class="control-item">
+          <p>Skew Y</p>
+          <input type="range" value="0" name="skew-y" id="range-skew-y">
+          <p class="control-num">0</p>
+        </div>
+      </div>
+    </div>
+    <div id="element-area">
+      <div id="element"></div>
+      <div id="output-area">
+        <textarea name="code" id="code-area" rows="2">transform: none;</textarea>
+      </div>
+    </div>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+</html>
