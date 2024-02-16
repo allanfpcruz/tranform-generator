@@ -4,17 +4,54 @@ const inputs = document.querySelectorAll('input')
 const element = document.querySelector('#element')
 const codeArea = document.querySelector('#code-area')
 
+let dataList = []
+let transformList = []
+let i = 0
+
 //funções
 
-//cria o código de tranformação
+//classe
+class Data {
+  constructor(transform, value, measure) {
+    this.transform = transform
+    this.value = value
+    this.measure = measure
+  }
+}
+
+//cria o código de transformação
 function generateTransform(value, transform, box) {
+
+  let code = ''
 
   let measure = setMeasure(transform)
 
-  let code = `${transform}(${value}${measure})`
-  console.log(code)
+  if(dataList.length > 0) {
+    dataList.forEach(data => {
+      if (data.transform == transform) {
+        data.value = value
+        data.measure = measure
+      } else {
+        dataList[i] = new Data(transform, value,measure)
+      }
+    })  
+  } else {
+    let data = new Data(transform, value, measure)
+    dataList[i] = data
+  }
 
-  applyTransform(code, transform)
+
+  i++
+
+  dataList.forEach(data => {
+    let partOfCode = `${data.transform}(${value}${measure})`
+    code += partOfCode
+  })
+
+  console.log(code)
+  console.log(dataList)
+
+  applyTransform(code)
 
   //coloca o número no índice
   box.innerHTML = value + measure
@@ -22,15 +59,9 @@ function generateTransform(value, transform, box) {
 }
 
 // aplica o código no elemento
-function applyTransform(code, transform) {
-
-  if (element.style.transform.length < code.length) {
-    element.style.transform = code
-  } else if (!element.style.transform.includes(transform)) {
-    element.style.transform += code
-  } else {
-
-  }
+function applyTransform(code) {
+ 
+  element.style.transform = code
 
 }
 
@@ -71,11 +102,5 @@ inputs.forEach(input => {
     let transformType = input.getAttribute('name')
     let numBox = input.parentNode.querySelector('.control-num')
     generateTransform(input.value, transformType, numBox)
-
-    //teste
-    let phrase = 'banana com granola'
-    let word = 'com'
-    let res = phrase.slice(0, phrase.lastIndexOf(word))
-    console.log(res)  
   })
 })
