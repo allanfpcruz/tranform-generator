@@ -7,11 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <title>Tranform Generator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Transform Generator</title>
 </head>
 <body>
   <main class="container">
-    <h1>Tranform Generator</h1>
+    <h1>Transform Generator</h1>
     <div id="input-area">
       <p>Edite o elemento Div com os controles abaixo:</p>
       <div id="controls-area">
@@ -37,13 +38,13 @@
         </div>
         <div class="control-item">
           <p>Scale X</p>
-          <input type="range" value="0" min="0" max="3" step=".1" name="scaleX" id="range-scale-x">
-          <p class="control-num">0</p>
+          <input type="range" value="1" min="0" max="3" step=".1" name="scaleX" id="range-scale-x">
+          <p class="control-num">1</p>
         </div>
         <div class="control-item">
           <p>Scale Y</p>
-          <input type="range" value="0" min="0" max="3" step=".1" name="scaleY" id="range-scale-y">
-          <p class="control-num">0</p>
+          <input type="range" value="1" min="0" max="3" step=".1" name="scaleY" id="range-scale-y">
+          <p class="control-num">1</p>
         </div>
         <div class="control-item">
           <p>Skew X</p>
@@ -58,11 +59,23 @@
       </div>
     </div>
     <div id="element-area">
-      <div id="element"></div>
+      <div id="area-of-element">
+        <div id="element">
+          <p>Test</p>
+        </div>
+      </div>
       <div id="output-area">
         <textarea name="code" id="code-area" rows="2">transform: none;</textarea>
+        <div id="button-area">
+          <button id="copy">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
       </div>
     </div>
+    <footer>
+      <p>Made by <a href="https://github.com/allanfpcruz" target="_blank" rel="noopener noreferrer">Allan Felipe Developer</a></p>
+    </footer>
   </main>
   <script src="js/script.js"></script>
 </body>

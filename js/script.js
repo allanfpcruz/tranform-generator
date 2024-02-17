@@ -1,8 +1,8 @@
 //declarações
 const inputs = document.querySelectorAll('input')
-
 const element = document.querySelector('#element')
 const codeArea = document.querySelector('#code-area')
+const copyButton = document.querySelector('#copy')
 
 let dataList = []
 let transformList = []
@@ -20,41 +20,44 @@ class Data {
 }
 
 //cria o código de transformação
-function generateTransform(value, transform, box) {
-
+function generateTransform(value, transform, box) {  
   let code = ''
-
+  
   let measure = setMeasure(transform)
-
-  if(dataList.length > 0) {
+  
+  if(transformList.includes(transform)) {
     dataList.forEach(data => {
-      if (data.transform == transform) {
+      if(data.transform == transform) {
         data.value = value
         data.measure = measure
-      } else {
-        dataList[i] = new Data(transform, value,measure)
       }
-    })  
+    })
   } else {
-    let data = new Data(transform, value, measure)
-    dataList[i] = data
+    dataList[i] = new Data(transform, value, measure)
+    i++
   }
-
-
-  i++
+  
+  transformList[i] = transform
 
   dataList.forEach(data => {
-    let partOfCode = `${data.transform}(${value}${measure})`
+    let partOfCode = `${data.transform}(${data.value}${data.measure}) `
     code += partOfCode
   })
 
   console.log(code)
-  console.log(dataList)
 
   applyTransform(code)
+  createCopy(code)
+
+  let newMeasure = ''
 
   //coloca o número no índice
-  box.innerHTML = value + measure
+  if(measure == 'deg') {
+    newMeasure = '°'
+  } else {
+    newMeasure = measure
+  }
+  box.innerHTML = value + newMeasure
 
 }
 
@@ -65,8 +68,10 @@ function applyTransform(code) {
 
 }
 
-//coloca o número do transform na interface
-
+//coloca o código pra copiar 
+function createCopy(code) {
+  codeArea.value = `transform: ${code.slice(0, code.lastIndexOf(';'))};`
+}
 
 //define a unidade de medida
 function setMeasure(transform) {
@@ -84,6 +89,26 @@ function setMeasure(transform) {
 
 }
 
+//copia o código
+function copyCode() {
+  codeArea.select()
+  document.execCommand('copy')
+  alert('Code copied!')
+}
+
+//eventos
+inputs.forEach(input => {
+  input.addEventListener('input', (e) => {
+    let transformType = input.getAttribute('name')
+    let numBox = input.parentNode.querySelector('.control-num')
+    generateTransform(input.value, transformType, numBox)
+  })
+})
+
+copyButton.addEventListener('click', (e) => {
+  copyCode()
+}) 
+
 //esboço do código
 
 //  if (!codeArea.value.includes(transform) || !codeArea.value.includes('none')) {
@@ -95,12 +120,3 @@ function setMeasure(transform) {
 //  } else {
 //    codeArea.value = `transform: ${code};`
 //  }
-
-//eventos
-inputs.forEach(input => {
-  input.addEventListener('change', (e) => {
-    let transformType = input.getAttribute('name')
-    let numBox = input.parentNode.querySelector('.control-num')
-    generateTransform(input.value, transformType, numBox)
-  })
-})
