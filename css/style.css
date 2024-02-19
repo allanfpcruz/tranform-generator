@@ -37,6 +37,23 @@ h1 {
   height: calc(100% + 30px);
 }
 
+#input-area::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+#input-area::-webkit-scrollbar-track {
+  background-color: #888;
+}
+
+#input-area::-webkit-scrollbar-thumb {
+  background-color: var(--cor01); 
+}
+
+#input-area::-webkit-scrollbar-button {
+  display: none;
+}
+
 #input-area > p {
   font-size: 1.25rem;
   font-weight: bold;
@@ -66,6 +83,7 @@ h1 {
   -webkit-appearance: none;
   appearance: none;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .control-item input::-webkit-slider-runnable-track {

@@ -25,7 +25,7 @@ function generateTransform(value, transform, box) {
   
   let measure = setMeasure(transform)
   
-  if(transformList.includes(transform)) {
+  if(transformList.indexOf(transform) != -1) {
     dataList.forEach(data => {
       if(data.transform == transform) {
         data.value = value
@@ -33,11 +33,11 @@ function generateTransform(value, transform, box) {
       }
     })
   } else {
+    transformList[i] = transform
     dataList[i] = new Data(transform, value, measure)
     i++
   }
   
-  transformList[i] = transform
 
   dataList.forEach(data => {
     let partOfCode = `${data.transform}(${data.value}${data.measure}) `
@@ -108,15 +108,3 @@ inputs.forEach(input => {
 copyButton.addEventListener('click', (e) => {
   copyCode()
 }) 
-
-//esboço do código
-
-//  if (!codeArea.value.includes(transform) || !codeArea.value.includes('none')) {
-//    if (codeArea.value.includes(transform.slice(0, transform.length-2))) {
-//      codeArea.value = `${codeArea.value.slice()}`
-//    } else {
-//      codeArea.value = `${codeArea.value.slice(0, codeArea.value.length - 1)}, ${code};`
-//    }
-//  } else {
-//    codeArea.value = `transform: ${code};`
-//  }
